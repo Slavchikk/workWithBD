@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b41811f797a641eca2fa58ed26903afb" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Genders" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Halls" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.halls_tickets" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Kinoteatr" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Role_user" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sessions_days" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sessions_time" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tickets" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.type_halls" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.type_tickets" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.users" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_users_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Halls_Halls" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_halls_tickets_Halls" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_halls_tickets_Tickets" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_users_Role_user" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tickets_sessions_days" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tickets_sessions_time" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tickets_Tickets" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
