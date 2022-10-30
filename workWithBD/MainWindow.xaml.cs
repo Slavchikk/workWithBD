@@ -16,6 +16,8 @@ using workWithBD.Windows;
 
 namespace workWithBD
 {
+
+    //для админа admin admin
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
@@ -25,11 +27,22 @@ namespace workWithBD
         {
             InitializeComponent();
             Base.EM = new Entities();
+           
+            // FrameClass.FrameMain = MainFrame;
+            // FrameClass.FrameMain.Navigate(new AutorizationPage());
         }
         private void Btn_Go_reg(object sender, RoutedEventArgs e)
         {
-         MainFrame.Navigate(new Page1());
-         
+            MainFrame.Navigate(new RegistrPage());
+            
+
+
+        }
+
+        private void Btn_Go_Admin(object sender, RoutedEventArgs e)
+        {
+            // FrameClass.FrameMain.Navigate(new AdminPage());
+            MainFrame.Navigate(new AutorizationPage());
         }
     }
 }

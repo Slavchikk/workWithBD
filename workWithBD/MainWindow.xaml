@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:workWithBD"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="550" Width="800">
+    <!--//для админа admin admin-->
     <Grid>
        
         <Grid.RowDefinitions>
             <RowDefinition ></RowDefinition>
-            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Width="100" HorizontalAlignment="Left" Click="Btn_Go_reg">Регистрация</Button>
+        <Image  Height="40" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40" Source="Photo\index.jpg"/>
+        <TextBlock Style="{StaticResource TBStyle}" Name ="Headers"  Margin="100,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"> КиноFallout</TextBlock>
+        <Button Width="100" Template="{StaticResource CTButon}" Grid.Column="1"  Margin="0,0,10,0" HorizontalAlignment="Right" Click="Btn_Go_reg">Регистрация</Button>
+        <Button Width="100"  Template="{StaticResource CTButon}" Grid.Column="1" Margin="0,0,130,0" HorizontalAlignment="Right" Click="Btn_Go_Admin">Авторизация</Button>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <Frame Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
+           <Frame Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
         </StackPanel>
 
     </Grid>
