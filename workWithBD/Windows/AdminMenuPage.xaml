@@ -9,8 +9,11 @@
       Title="AdminMenuPage">
 
     <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,30,3,0">
         <!--<Image Source="workWithBD\Photo\images.jpg" Margin="40,30,650,310" Height="100" Width="100"></Image>-->
-        <TextBlock Style="{StaticResource TBStyle}"  HorizontalAlignment="Center" Margin="0,30,300,0" Name="AdminName">UserName</TextBlock>
-        <Button Width="100"   Template="{StaticResource CTButon}" Click ="Btn_go_admin">Меню</Button>
+            <TextBlock  Margin="30" Style="{StaticResource TBStyle}"  HorizontalAlignment="Center"  Name="AdminName">UserName</TextBlock>
+        <Button Margin="30" Width="160"   Template="{StaticResource CTButon}" Click ="Btn_go_admin">Просмотр пользователей</Button>
+            <Button  Margin="30" Width="160"   Template="{StaticResource CTButon}" Click ="Btn_go_list">Просмотр билетов</Button>
+        </StackPanel>
     </Grid>
 </Page>

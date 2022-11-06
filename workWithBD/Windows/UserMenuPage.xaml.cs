@@ -20,10 +20,10 @@ namespace workWithBD.Windows
     /// </summary>
     public partial class UserMenuPage : Page
     {
-        public UserMenuPage(users User)
+        public UserMenuPage(string Login = "noKnown")
         {
             InitializeComponent();
-            UserName.Text = User.login;
+            UserName.Text = "Ваш логин " + Login;
         }
     }
 }

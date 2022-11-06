@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b16f81048fe4bd3a63e67e4e9bdf431" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="Model.Genders" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.Halls" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="Model.Kinoteatr" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.Role_user" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Model.sales" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="Model.sessions_days" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="Model.sessions_time" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.Tickets" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="Model.type_halls" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="Model.type_tickets" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="Model.users" Width="1.5" PointX="5" PointY="6" />
+        <AssociationConnector Association="Model.FK_users_Genders" />
+        <AssociationConnector Association="Model.FK_Halls_Halls" />
+        <AssociationConnector Association="Model.FK_sales_Halls" />
+        <AssociationConnector Association="Model.FK_users_Role_user" />
+        <AssociationConnector Association="Model.FK_sales_Tickets" />
+        <AssociationConnector Association="Model.FK_Tickets_sessions_days" />
+        <AssociationConnector Association="Model.FK_Tickets_sessions_time" />
+        <AssociationConnector Association="Model.FK_Tickets_Tickets" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

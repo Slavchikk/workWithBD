@@ -20,10 +20,12 @@ namespace workWithBD.Windows
     /// </summary>
     public partial class AdminMenuPage : Page
     {
-        public AdminMenuPage(users User)
+        string Login;
+        public AdminMenuPage(string Login = "noKnown")
         {
+            this.Login = Login;
             InitializeComponent();
-            AdminName.Text = User.login;
+            AdminName.Text = "Ваш логин:  " + Login;
 
         }
 
@@ -34,7 +36,12 @@ namespace workWithBD.Windows
 
         private void Btn_go_admin(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AdminPage());
+            NavigationService.Navigate(new AdminPage(Login));
+        }
+
+        private void Btn_go_list(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ListViewTable(Login));
         }
     }
 }

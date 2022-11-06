@@ -38,7 +38,7 @@ namespace workWithBD.Windows
             }
             User = Base.EM.users.FirstOrDefault(z => z.login == TbLoginAvto.Text && z.password == paswordCode);
             if(User == null)
-                MessageBox.Show("ff" + paswordCode);
+                MessageBox.Show("Пароль введен неверно");
             else
             {
                 switch (User.id_role)
@@ -46,11 +46,11 @@ namespace workWithBD.Windows
                     case 1:
                         MessageBox.Show("Здравствуйте, администратор " + User.name);
                         // переход в меню администратора
-                      NavigationService.Navigate(new AdminMenuPage(User));
+                      NavigationService.Navigate(new AdminMenuPage(User.login));
                         break;
                     case 2:
                         MessageBox.Show("Здравствуйте, пользователь " + User.name);
-                        NavigationService.Navigate(new UserMenuPage(User));  // переход в личный кабинет
+                        NavigationService.Navigate(new UserMenuPage(User.login));  // переход в личный кабинет
                         break;
                 }
             }

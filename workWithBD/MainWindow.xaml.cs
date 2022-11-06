@@ -26,7 +26,7 @@ namespace workWithBD
         public MainWindow()
         {
             InitializeComponent();
-            Base.EM = new Entities();
+            Base.EM = new Entities1();
            
             // FrameClass.FrameMain = MainFrame;
             // FrameClass.FrameMain.Navigate(new AutorizationPage());

@@ -13,10 +13,10 @@ namespace workWithBD.Windows
     {
         string texts;
 
-
-        public AdminPage( )
+        string Login;
+        public AdminPage(string Login = "noKnow")
         {
-            
+            this.Login = Login;
             InitializeComponent();
             var query =
                 from users in Base.EM.users.ToList()
@@ -145,6 +145,13 @@ namespace workWithBD.Windows
                    select new { users.name, users.surname, users.lastname, Genders.gender, users.login, users.birthday };
 
             DgUsers.ItemsSource = query.ToList();
+        }
+
+        private void Btn_back_menu(object sender, RoutedEventArgs e)
+        {
+       
+           
+            NavigationService.Navigate(new AdminMenuPage(Login));
         }
     }
 }

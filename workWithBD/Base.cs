@@ -8,6 +8,6 @@ namespace workWithBD
 {
     public class Base
     {
-        public static Entities EM;
+        public static Entities1 EM;
     }
 }

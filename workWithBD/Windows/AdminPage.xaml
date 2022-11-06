@@ -24,6 +24,7 @@
                     <CheckBox Name="CBMen" Content="Мужской" Checked="CBMan_Checked"></CheckBox>
                     <CheckBox Name="CBWomen" Content="Женский"  Checked="CBWoman_Checked" ></CheckBox>
                 </StackPanel>
+                <Button Margin="10,30,0,0" Click="Btn_back_menu">Назад в меню</Button>
                 <!--  <Button Click="Button_Click_3">Перейти в личный кабинет</Button>-->
             </StackPanel>
             <StackPanel Name="SPGrid" >
