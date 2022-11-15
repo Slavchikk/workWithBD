@@ -183,5 +183,10 @@ namespace workWithBD.Windows
             
             NavigationService.Navigate(new AdminMenuPage(Login));
         }
+
+        private void btnCreateTickets_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddTicket());
+        }
     }
 }

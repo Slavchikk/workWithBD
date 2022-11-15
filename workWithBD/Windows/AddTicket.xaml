@@ -1,0 +1,36 @@
+﻿<Page x:Class="workWithBD.Windows.AddTicket"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:workWithBD.Windows"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddTicket">
+
+    <Grid>
+        <StackPanel Margin="50">
+            <Label HorizontalAlignment="Center"   Style="{StaticResource LabelStyle}" >Добавление билета</Label>
+
+            <GroupBox HorizontalAlignment="Center" Header="Введите фильм">
+                <TextBox Width="130" Name="TBnameFilm"/>
+            </GroupBox>
+            <GroupBox  HorizontalAlignment="Center" Header="Введите временной отрезок">
+                 <ComboBox Width="130" Name="TBSessionTime"></ComboBox>
+            </GroupBox>
+            <GroupBox  HorizontalAlignment="Center" Header="Введите день">
+                <ComboBox Width="130" Name="TBSessionDay"/>
+            </GroupBox>
+            <GroupBox  HorizontalAlignment="Center" Header="Введите зал">
+                <ComboBox Width="130" Name="TBHalls"></ComboBox>
+            </GroupBox>
+            <GroupBox  HorizontalAlignment="Center" Header="Введите тип билета">
+                <ComboBox Width="130" Name="TBTypeTicket"/>
+            </GroupBox>
+          
+                    
+        <Button Width="130"  Margin="10"  Template="{StaticResource CTButon}" Click="btnAdd_Click">Добавить</Button>
+
+        </StackPanel>
+    </Grid>
+</Page>

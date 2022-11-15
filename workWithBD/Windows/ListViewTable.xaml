@@ -42,6 +42,7 @@
         </ListView>
 
         <Button Margin ="30" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="100" Template="{StaticResource CTButon}"  Click="Btn_back_menu">Назад в меню</Button>
+        <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Name="btnCreateTickets" Click="btnCreateTickets_Click">Добавить кота</Button>
 
     </Grid>
 </Page>
