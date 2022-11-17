@@ -18,78 +18,23 @@ namespace workWithBD.Windows
     /// <summary>
     /// Логика взаимодействия для AddTicket.xaml
     /// </summary>
-    public partial class AddTicket : Page
+    public partial class CreateOrUpdateTickets : Page
     {
 
-        Tickets Tick;  // объект, в котором будет хранится данные о новом или отредактированном коте
-        bool flagUpdate = false; // для определения, создаем мы новый объект или редактируем старый
-        string path;  // путь к картинке
+       
+        Tickets tick;  // объект, в котором будет хранится данные о новом или отредактированном коте
+        bool flagUpdate;  // для определения, создаем мы новый объект или редактируем старый
+       
+
 
         public void uploadFields()  // метод для заполнения списков
         {
-            //cmbBreed.ItemsSource = BaseClass.tBE.BreedTable.ToList();
-            //cmbBreed.SelectedValuePath = "idBreed";
-            //cmbBreed.DisplayMemberPath = "Breed";
-
-            //cmbGender.ItemsSource = BaseClass.tBE.GenderTable.ToList();
-            //cmbGender.SelectedValuePath = "idGender";
-            //cmbGender.DisplayMemberPath = "Gender";
-
-            //lbTraits.ItemsSource = BaseClass.tBE.TraitTable.ToList();
-            //lbTraits.SelectedValuePath = "idTrait";
-            //lbTraits.DisplayMemberPath = "Trait";
-
-            //lbFeed.ItemsSource = BaseClass.tBE.FeedTable.ToList();
+            
         }
 
-        // конструктор для редактирования данных о коте ( с аргументом, который хранит информацию о коте, которого хотим отредактировать)
-        //public AddTicket(Tickets cat)
-        //{
-        //    InitializeComponent();
-        //    uploadFields(); // заполняем списки
-        //    flagUpdate = true;  // отметка о том, что кота редактируем
-        //    CAT = cat;  // ассоциируем выше созданный глобавльный объект с объектом в кострукторе для дальнейшего редактирования этих данных
-        //    tbName.Text = cat.CatName;  // вывод имени кота
-        //    cmbBreed.SelectedIndex = cat.idBreed - 1;  // вывод породы кота
-        //    dpBirthday.SelectedDate = cat.Birthday;  // вывод даты рождения 
-        //    cmbGender.SelectedIndex = cat.idGender - 1;  // вывод пола
-        //    tbPassport.Text = cat.PassportTable.UniqueNumber;  // вывод паспорта
-        //    tbColor.Text = cat.PassportTable.ColorCat;  // вывод окраса
-
-        //    // находим черты характера того кота, которого мы редактируем:
-        //    List<TraitCat> tC = BaseClass.tBE.TraitCat.Where(x => x.idCat == cat.idCat).ToList();
-
-        //    // цикл для выделения черт характера кота в общем списке:
-        //    foreach (TraitTable t in lbTraits.Items)
-        //    {
-        //        if (tC.FirstOrDefault(x => x.idTrait == t.idTrait) != null)
-        //        {
-        //            lbTraits.SelectedItems.Add(t);
-        //        }
-        //    }
-
-        //    // находим корма для того кота, которого мы редактируем
-        //    List<FeedCatTable> fct = BaseClass.tBE.FeedCatTable.Where(x => x.idCat == cat.idCat).ToList();
-
-        //    // цикл для отображения кормов и их количества для кота:
-        //    foreach (FeedTable t in lbFeed.Items)
-        //    {
-        //        if (fct.FirstOrDefault(x => x.idFeed == t.idFeed) != null)
-        //        {
-        //            t.QM = fct.Count;
-        //        }
-        //    }
-
-        //    // вывод картинки
-        //    if (cat.Photo != null)
-        //    {
-        //        BitmapImage img = new BitmapImage(new Uri(cat.Photo, UriKind.RelativeOrAbsolute));
-        //        photoCat.Source = img;
-        //    }
-        //}
-
+     
         // конструктор для создания нового кота (без аргументов)
-        public AddTicket()
+        public CreateOrUpdateTickets()
         {
             InitializeComponent();
             TBSessionTime.ItemsSource = Base.EM.sessions_time.ToList();
@@ -105,8 +50,46 @@ namespace workWithBD.Windows
             TBTypeTicket.SelectedValuePath = "id_type_ticket";
             TBTypeTicket.DisplayMemberPath = "type_ticket";
             //  uploadFields();  // заполняем списки
+            flagUpdate = true;
         }
+        public CreateOrUpdateTickets(Tickets tickets)
+        {
+            InitializeComponent();
+            TBSessionTime.ItemsSource = Base.EM.sessions_time.ToList();
+            TBSessionTime.SelectedValuePath = "id_session_time";
+            TBSessionTime.DisplayMemberPath = "session_time";
+            TBSessionDay.ItemsSource = Base.EM.sessions_days.ToList();
+            TBSessionDay.SelectedValuePath = "id_session_day";
+            TBSessionDay.DisplayMemberPath = "session_day";
+            TBHalls.ItemsSource = Base.EM.Halls.ToList();
+            TBHalls.SelectedValuePath = "id_halls";
+            TBHalls.DisplayMemberPath = "halls1";
+            TBTypeTicket.ItemsSource = Base.EM.type_tickets.ToList();
+            TBTypeTicket.SelectedValuePath = "id_type_ticket";
+            TBTypeTicket.DisplayMemberPath = "type_ticket";
+            tick = tickets;
 
+
+            
+
+            List<Halls> hc = Base.EM.Halls.Where(x => x.id_halls == tickets.id_halls).ToList();
+
+            string halls = "";
+
+            foreach (Halls hcc in hc)
+            {
+                halls = hcc.halls1;
+            }
+
+             // ассоциируем выше созданный глобавльный объект с объектом в кострукторе для дальнейшего редактирования этих данных
+            TBnameFilm.Text = tickets.session; // вывод имени кота
+            TBHalls.SelectedIndex = tickets.id_halls - 1; // вывод породы кота
+            TBSessionDay.SelectedIndex = tickets.id_session_day - 1;
+            TBSessionTime.SelectedIndex = tickets.id_session_time - 1;
+            TBTypeTicket.SelectedIndex = tickets.id_type_tickets - 1;
+
+
+        }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -115,14 +98,14 @@ namespace workWithBD.Windows
                 // если флаг равен false, то создаем объект для добавления кота
                 if (flagUpdate == false)
                 {
-                    Tick = new Tickets();
+                    tick = new Tickets();
                 }
                 // заполняем поля таблицы CatTable
-                Tick.session = TBnameFilm.Text;
-                Tick.id_session_time = TBSessionTime.SelectedIndex + 1;
-                Tick.id_session_day = TBSessionDay.SelectedIndex + 1;
-                Tick.id_halls = TBHalls.SelectedIndex + 1;
-                Tick.id_type_tickets = TBTypeTicket.SelectedIndex+1;
+                tick.session = TBnameFilm.Text;
+                tick.id_session_time = TBSessionTime.SelectedIndex + 1;
+                tick.id_session_day = TBSessionDay.SelectedIndex + 1;
+                tick.id_halls = TBHalls.SelectedIndex + 1;
+                tick.id_type_tickets = TBTypeTicket.SelectedIndex+1;
 
                 //List<sessions_time> TC = Base.EM.sessions_time.Where(x => x.sessions_time == TBSessionTime.SelectedIndex).ToList();
                 int str = 0;
@@ -137,7 +120,7 @@ namespace workWithBD.Windows
                 // если флаг равен false, то добавляем объект в базу
                 if (flagUpdate == false)
                 {
-                    Base.EM.Tickets.Add(Tick);
+                    Base.EM.Tickets.Add(tick);
                 }
                 // BaseClass.tBE.SaveChanges();
 

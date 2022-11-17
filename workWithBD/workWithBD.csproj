@@ -118,8 +118,8 @@
     <Compile Include="users.cs">
       <DependentUpon>ADB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Windows\AddTicket.xaml.cs">
-      <DependentUpon>AddTicket.xaml</DependentUpon>
+    <Compile Include="Windows\CreateOrUpdateTickets.xaml.cs">
+      <DependentUpon>CreateOrUpdateTickets.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AdminMenuPage.xaml.cs">
       <DependentUpon>AdminMenuPage.xaml</DependentUpon>
@@ -151,7 +151,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\AddTicket.xaml">
+    <Page Include="Windows\CreateOrUpdateTickets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

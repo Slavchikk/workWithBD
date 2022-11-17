@@ -32,8 +32,8 @@
                                 <TextBlock  Uid="{Binding id_ticket }"  Loaded="tbCharacter_Loaded"></TextBlock>
                                 <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_LoadedType"/>
                                 <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_LoadedPrice"/>
-
-
+                                <Button Uid="{Binding id_ticket}" Click="btn_Delete">Удалить</Button>
+                                <Button Uid="{Binding id_ticket}" Click="btn_update">Редактировать</Button>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -42,7 +42,7 @@
         </ListView>
 
         <Button Margin ="30" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="100" Template="{StaticResource CTButon}"  Click="Btn_back_menu">Назад в меню</Button>
-        <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Name="btnCreateTickets" Click="btnCreateTickets_Click">Добавить кота</Button>
+        <Button  Margin ="170,23,0,0" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Template="{StaticResource CTButon}"  Name="btnCreateTickets" Click="btnCreateTickets_Click">Добавить билет</Button>
 
     </Grid>
 </Page>

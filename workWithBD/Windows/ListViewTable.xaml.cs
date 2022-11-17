@@ -186,7 +186,27 @@ namespace workWithBD.Windows
 
         private void btnCreateTickets_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddTicket());
+            NavigationService.Navigate(new CreateOrUpdateTickets());
+        }
+
+        private void btn_Delete(object sender, RoutedEventArgs e)
+        {
+            Button B = (Button)sender; // задаем кнопке имя
+            int ind = Convert.ToInt32(B.Uid); // считываем индекс кнопки, который соответсвует id кота
+            Tickets TicketsDelete = Base.EM.Tickets.FirstOrDefault(y => y.id_ticket == ind); // находим кота с соответствующим индексом
+            Base.EM.Tickets.Remove(TicketsDelete);  // удаляем кота
+            Base.EM.SaveChanges();
+            NavigationService.Navigate(new ListViewTable());  // перезагружаем страницу, переходя на нее же саму
+            MessageBox.Show("Запись удалена");
+        }
+
+        private void btn_update(object sender, RoutedEventArgs e)
+        {
+            Button B = (Button)sender;  // задаем кнопке имя
+            int ind = Convert.ToInt32(B.Uid);  // считываем индекс кнопки, который соответсвует id кота
+            Tickets TicketsUpd = Base.EM.Tickets.FirstOrDefault(y => y.id_ticket == ind);  // находим кота с соответствующим индексом
+            NavigationService.Navigate(new CreateOrUpdateTickets(TicketsUpd));  // переходим на страницу с формой добавления, которую будем использовать и для редактирования
+            // Обратите внимание, что конструктор в этом случае не пустой. Он содержит того кота, который соотвествует нужному индексу
         }
     }
 }
