@@ -9,7 +9,7 @@
       Title="CreateOrUpdateTickets">
 
     <Grid>
-        <StackPanel Margin="50">
+        <StackPanel Margin="10">
             <Label HorizontalAlignment="Center"   Style="{StaticResource LabelStyle}" >Добавление билета</Label>
 
             <GroupBox HorizontalAlignment="Center" Header="Введите фильм">
@@ -27,10 +27,18 @@
             <GroupBox  HorizontalAlignment="Center" Header="Введите тип билета">
                 <ComboBox Width="130" Name="TBTypeTicket"/>
             </GroupBox>
-          
-                    
-        <Button Width="130"  Margin="10"  Template="{StaticResource CTButon}" Click="btnAdd_Click">Добавить</Button>
+            <GroupBox  HorizontalAlignment="Center" Header="Введите тип билета">
+                <TextBox Width="130" Name="TBSales"/>
+            </GroupBox>
+            <GroupBox  HorizontalAlignment="Center" Header="Введите тип билета">
+                <TextBox Width="130" Name="TBDateTime"/>
+            </GroupBox>
 
+            <StackPanel Orientation="Horizontal">
+                <Button Width="130"  Margin="10"  Template="{StaticResource CTButon}" Click="btnAdd_Click">Добавить</Button>
+                <Button Margin ="280,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="100" Template="{StaticResource CTButon}"  Click="Btn_back_list">К списку</Button>
+            </StackPanel>    
+       
         </StackPanel>
     </Grid>
 </Page>

@@ -43,6 +43,7 @@
 
         <Button Margin ="30" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="100" Template="{StaticResource CTButon}"  Click="Btn_back_menu">Назад в меню</Button>
         <Button  Margin ="170,23,0,0" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Template="{StaticResource CTButon}"  Name="btnCreateTickets" Click="btnCreateTickets_Click">Добавить билет</Button>
+   
 
     </Grid>
 </Page>

@@ -70,24 +70,30 @@ namespace workWithBD.Windows
             tick = tickets;
 
 
-            
 
-            List<Halls> hc = Base.EM.Halls.Where(x => x.id_halls == tickets.id_halls).ToList();
 
-            string halls = "";
-
-            foreach (Halls hcc in hc)
+            List<sales> TC = Base.EM.sales.Where(x => x.id_tickets == tickets.id_ticket ).ToList();
+            int str = 0;
+            foreach (sales tc in TC)
             {
-                halls = hcc.halls1;
+                str = Convert.ToInt32(tc.count);
+            }
+            DateTime dtr;
+            dtr = new DateTime(1991, 12, 31);
+            foreach (sales tc in TC)
+            {
+                dtr = Convert.ToDateTime(tc.dateTime);
             }
 
-             // ассоциируем выше созданный глобавльный объект с объектом в кострукторе для дальнейшего редактирования этих данных
+          
+            // ассоциируем выше созданный глобавльный объект с объектом в кострукторе для дальнейшего редактирования этих данных
             TBnameFilm.Text = tickets.session; // вывод имени кота
             TBHalls.SelectedIndex = tickets.id_halls - 1; // вывод породы кота
             TBSessionDay.SelectedIndex = tickets.id_session_day - 1;
             TBSessionTime.SelectedIndex = tickets.id_session_time - 1;
             TBTypeTicket.SelectedIndex = tickets.id_type_tickets - 1;
-
+            TBDateTime.Text = dtr.ToString("dd.mm.yyyy hh:mm");
+            TBSales.Text = ""+str;
 
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -205,5 +211,9 @@ namespace workWithBD.Windows
             }
         }
 
+        private void Btn_back_list(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ListViewTable());
+        }
     }
 }
