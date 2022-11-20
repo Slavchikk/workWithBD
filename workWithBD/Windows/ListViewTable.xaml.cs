@@ -206,8 +206,11 @@ namespace workWithBD.Windows
         {
             Button B = (Button)sender;  // задаем кнопке имя
             int ind = Convert.ToInt32(B.Uid);  // считываем индекс кнопки, который соответсвует id кота
-            Tickets TicketsUpd = Base.EM.Tickets.FirstOrDefault(y => y.id_ticket == ind);  // находим кота с соответствующим индексом
-            NavigationService.Navigate(new CreateOrUpdateTickets(TicketsUpd));  // переходим на страницу с формой добавления, которую будем использовать и для редактирования
+            Tickets TicketsUpd = Base.EM.Tickets.FirstOrDefault(y => y.id_ticket == ind);
+            // находим кота с соответствующим индексом
+
+            sales salesupd = Base.EM.sales.FirstOrDefault(x => x.id_tickets == TicketsUpd.id_ticket);
+            NavigationService.Navigate(new CreateOrUpdateTickets(TicketsUpd,salesupd));  // переходим на страницу с формой добавления, которую будем использовать и для редактирования
             // Обратите внимание, что конструктор в этом случае не пустой. Он содержит того кота, который соотвествует нужному индексу
         }
 

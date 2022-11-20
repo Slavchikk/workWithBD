@@ -33,13 +33,13 @@ namespace workWithBD
                 List<sales> TC = Base.EM.sales.Where(x => x.id_tickets == id_ticket).ToList();
 
                 DateTime str ;
-                str = new DateTime(1991, 12, 31);
+                str = new DateTime();
                 foreach (sales tc in TC)
                 {
                     str = Convert.ToDateTime(tc.dateTime);
                 }
 
-                return "Дата и время сеанса: " + str.ToString("dd.mm.yyyy hh:mm");
+                return "Дата и время сеанса: " + str.ToString("dd.MM.yyyy HH:mm");
             }
         }
         public SolidColorBrush TypeColor

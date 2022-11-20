@@ -9,41 +9,50 @@
       Title="ListViewTable">
 
     <Grid>
-        
-        <ListView Name="listTable" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel HorizontalAlignment="Center"></WrapPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="Aquamarine">
-                        <Grid Name="gridMain" Width="500" Height="500" Background="{Binding TypeColor}">
-                            <StackPanel>
-                                <!--<TextBlock Text="{Binding session , StringFormat=Билет на фильм: {0}}"/>-->
-                                <TextBlock Text="{Binding NameBreed}"/>
-                                <TextBlock Text="{Binding sessions_days.session_day, StringFormat=День: {0}}"></TextBlock>
-                                 <TextBlock Text="{Binding sessions_time.session_time, StringFormat=Временной отрезок: {0}}"></TextBlock>
-                                <TextBlock Text="{Binding type_tickets.type_ticket, StringFormat=Тип билета: {0}}"></TextBlock>
-                                <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_LoadedCount"></TextBlock>
-                               
-                                <TextBlock Text="{Binding DateTime}"/>
-                                <TextBlock  Uid="{Binding id_ticket }"  Loaded="tbCharacter_Loaded"></TextBlock>
-                                <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_LoadedType"/>
-                                <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_LoadedPrice"/>
-                                <Button Uid="{Binding id_ticket}" Click="btn_Delete">Удалить</Button>
-                                <Button Uid="{Binding id_ticket}" Click="btn_update">Редактировать</Button>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
         <Button Margin ="30" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="100" Template="{StaticResource CTButon}"  Click="Btn_back_menu">Назад в меню</Button>
-        <Button  Margin ="170,23,0,0" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Template="{StaticResource CTButon}"  Name="btnCreateTickets" Click="btnCreateTickets_Click">Добавить билет</Button>
-   
+        <Button  Margin ="30,23,0,0" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Template="{StaticResource CTButon}"  Name="btnCreateTickets" Click="btnCreateTickets_Click">Добавить билет</Button>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <ListView Name="listTable" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="Aquamarine">
+                            <Grid Name="gridMain" Width="500" Height="500" Background="{Binding TypeColor}">
+                                <StackPanel>
+                                    <!--<TextBlock Text="{Binding session , StringFormat=Билет на фильм: {0}}"/>-->
+                                    <TextBlock Text="{Binding NameBreed}"/>
+                                    <TextBlock Text="{Binding sessions_days.session_day, StringFormat=День: {0}}"></TextBlock>
+                                    <TextBlock Text="{Binding sessions_time.session_time, StringFormat=Временной отрезок: {0}}"></TextBlock>
+                                    <TextBlock Text="{Binding type_tickets.type_ticket, StringFormat=Тип билета: {0}}"></TextBlock>
+                                    <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_LoadedCount"></TextBlock>
+
+                                    <TextBlock Text="{Binding DateTime}"/>
+                                    <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_Loaded"></TextBlock>
+                                    <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_LoadedType"/>
+                                    <TextBlock Uid="{Binding id_ticket }" Loaded="tbCharacter_LoadedPrice"/>
+                                    <Button Uid="{Binding id_ticket}" Click="btn_Delete">Удалить</Button>
+                                    <Button Uid="{Binding id_ticket}" Click="btn_update">Редактировать</Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+
 
     </Grid>
 </Page>
