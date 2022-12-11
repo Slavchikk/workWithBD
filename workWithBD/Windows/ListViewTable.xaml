@@ -16,14 +16,43 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
         <Button Margin ="30" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="100" Template="{StaticResource CTButon}"  Click="Btn_back_menu">Назад в меню</Button>
-        <Button  Margin ="30,23,0,0" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Template="{StaticResource CTButon}"  Name="btnCreateTickets" Click="btnCreateTickets_Click">Добавить билет</Button>
+        <Button  Margin ="0,23,0,0" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Template="{StaticResource CTButon}"  Name="btnCreateTickets" Click="btnCreateTickets_Click">Добавить билет</Button>
+            <StackPanel Orientation="Vertical" Margin="10,0,0,25" Height="50">
+                <TextBlock Margin="10,0,15,10">Критерий:</TextBlock>
+                <ComboBox Name="CBCrit" Width="100"  Height="30" SelectionChanged="cbCrit_Chang" HorizontalAlignment="Left" IsEnabled="True">
+                    <ComboBoxItem Content="По билету"/>
+                    <ComboBoxItem Content="По цене"/>
+                    <ComboBoxItem Content="По дате начала"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10,0,0,25" Height="50">
+                <TextBlock Margin="10,0,15,10">Сортировка:</TextBlock>
+                <ComboBox Name="CBSort" Width="100"  Height="30"  SelectionChanged="cbSort_Chang" HorizontalAlignment="Left" IsEnabled="True">
+                    <ComboBoxItem Content="По возрастанию"/>
+                    <ComboBoxItem Content="По убыванию"/>
+                    
+                </ComboBox>
+            </StackPanel>
+            
+          
+            <StackPanel Orientation="Vertical" Margin="10,0,0,25" Height="50">
+                <TextBlock Margin="10,0,15,10">Поиск по фильму:</TextBlock>
+                <TextBox TextChanged="tx_chang" Height="30" Width="100" Name="TbFind"></TextBox>
+            </StackPanel>
+            <GroupBox   HorizontalAlignment="Center" Margin="30,0,0,0" Height="50" Header="Введите тип билета">
+                <ComboBox SelectionChanged="cbFiltr_Chang" Width="130" Name="TBTypeTicket"/>
+            </GroupBox>
+
+       
+
+
 
         </StackPanel>
         <StackPanel Grid.Row="1">
             <ListView Name="listTable" ScrollViewer.HorizontalScrollBarVisibility="Visible">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                        <WrapPanel VerticalAlignment="Center"></WrapPanel>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>

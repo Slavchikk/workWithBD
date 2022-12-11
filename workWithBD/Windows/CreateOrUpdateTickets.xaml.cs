@@ -26,7 +26,7 @@ namespace workWithBD.Windows
         Tickets tick;
         sales sls;// объект, в котором будет хранится данные о новом или отредактированном коте
         bool flagUpdate = false;  // для определения, создаем мы новый объект или редактируем старый
-
+        users user;
 
 
         public void uploadFields()  // метод для заполнения списков
@@ -54,7 +54,7 @@ namespace workWithBD.Windows
             uploadFields();  // заполняем списки
 
         }
-        public CreateOrUpdateTickets(Tickets tickets,sales sales)
+        public CreateOrUpdateTickets(Tickets tickets,sales sales,users user)
         {
             InitializeComponent();
             uploadFields(); // заполняем списки
@@ -62,7 +62,7 @@ namespace workWithBD.Windows
               tick = tickets;
             sls = sales;
 
-
+            this.user = user;
 
             List<sales> TC = Base.EM.sales.Where(x => x.id_tickets == tickets.id_ticket).ToList();
             int str = 0;
@@ -188,7 +188,7 @@ namespace workWithBD.Windows
         }
         private void Btn_back_list(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ListViewTable());
+            NavigationService.Navigate(new ListViewTable(user));
         }
     }
 }

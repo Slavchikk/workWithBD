@@ -14,6 +14,12 @@ namespace workWithBD
     
     public partial class users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public users()
+        {
+            this.userphoto = new HashSet<userphoto>();
+        }
+    
         public int id_user { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
@@ -26,5 +32,7 @@ namespace workWithBD
     
         public virtual Genders Genders { get; set; }
         public virtual Role_user Role_user { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<userphoto> userphoto { get; set; }
     }
 }

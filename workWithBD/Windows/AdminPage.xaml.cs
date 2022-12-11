@@ -13,10 +13,10 @@ namespace workWithBD.Windows
     {
         string texts;
 
-        string Login;
-        public AdminPage(string Login = "noKnow")
+        users user;
+        public AdminPage(users user)
         {
-            this.Login = Login;
+            this.user = user;
             InitializeComponent();
             var query =
                 from users in Base.EM.users.ToList()
@@ -151,7 +151,7 @@ namespace workWithBD.Windows
         {
        
            
-            NavigationService.Navigate(new AdminMenuPage(Login));
+            NavigationService.Navigate(new AdminMenuPage(user));
         }
     }
 }

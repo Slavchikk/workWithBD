@@ -46,11 +46,11 @@ namespace workWithBD.Windows
                     case 1:
                         MessageBox.Show("Здравствуйте, администратор " + User.name);
                         // переход в меню администратора
-                      NavigationService.Navigate(new AdminMenuPage(User.login));
+                      NavigationService.Navigate(new AdminMenuPage(User));
                         break;
                     case 2:
                         MessageBox.Show("Здравствуйте, пользователь " + User.name);
-                        NavigationService.Navigate(new UserMenuPage(User.login));  // переход в личный кабинет
+                        NavigationService.Navigate(new UserMenuPage(User));  // переход в личный кабинет
                         break;
                 }
             }

@@ -101,6 +101,15 @@
           <Property Name="cost_premium" Type="int" Nullable="false" />
           <Property Name="cost_monday" Type="int" />
         </EntityType>
+        <EntityType Name="userphoto">
+          <Key>
+            <PropertyRef Name="id_photo" />
+          </Key>
+          <Property Name="id_photo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="photo_binary" Type="varbinary(max)" />
+          <Property Name="photo_path" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id_user" />
@@ -187,6 +196,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_user_photo_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="userphoto" Type="Self.userphoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="userphoto">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_users_Genders">
           <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
@@ -223,6 +244,7 @@
           <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="type_halls" EntityType="Self.type_halls" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="type_tickets" EntityType="Self.type_tickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userphoto" EntityType="Self.userphoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Halls_Halls" Association="Self.FK_Halls_Halls">
             <End Role="type_halls" EntitySet="type_halls" />
@@ -247,6 +269,10 @@
           <AssociationSet Name="FK_Tickets_Tickets" Association="Self.FK_Tickets_Tickets">
             <End Role="type_tickets" EntitySet="type_tickets" />
             <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_photo_users" Association="Self.FK_user_photo_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="userphoto" EntitySet="userphoto" />
           </AssociationSet>
           <AssociationSet Name="FK_users_Genders" Association="Self.FK_users_Genders">
             <End Role="Genders" EntitySet="Genders" />
@@ -273,6 +299,7 @@
           <EntitySet Name="Tickets" EntityType="Model.Tickets" />
           <EntitySet Name="type_halls" EntityType="Model.type_halls" />
           <EntitySet Name="type_tickets" EntityType="Model.type_tickets" />
+          <EntitySet Name="userphoto" EntityType="Model.userphoto" />
           <EntitySet Name="users" EntityType="Model.users" />
           <AssociationSet Name="FK_users_Genders" Association="Model.FK_users_Genders">
             <End Role="Genders" EntitySet="Genders" />
@@ -305,6 +332,10 @@
           <AssociationSet Name="FK_Tickets_Tickets" Association="Model.FK_Tickets_Tickets">
             <End Role="type_tickets" EntitySet="type_tickets" />
             <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_photo_users" Association="Model.FK_user_photo_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="userphoto" EntitySet="userphoto" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Genders">
@@ -417,6 +448,16 @@
           <Property Name="cost_monday" Type="Int32" />
           <NavigationProperty Name="Tickets" Relationship="Model.FK_Tickets_Tickets" FromRole="type_tickets" ToRole="Tickets" />
         </EntityType>
+        <EntityType Name="userphoto">
+          <Key>
+            <PropertyRef Name="id_photo" />
+          </Key>
+          <Property Name="id_photo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="photo_binary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="photo_path" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="Model.FK_user_photo_users" FromRole="userphoto" ToRole="users" />
+        </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id_user" />
@@ -432,6 +473,7 @@
           <Property Name="id_role" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Genders" Relationship="Model.FK_users_Genders" FromRole="users" ToRole="Genders" />
           <NavigationProperty Name="Role_user" Relationship="Model.FK_users_Role_user" FromRole="users" ToRole="Role_user" />
+          <NavigationProperty Name="userphoto" Relationship="Model.FK_user_photo_users" FromRole="users" ToRole="userphoto" />
         </EntityType>
         <Association Name="FK_users_Genders">
           <End Type="Model.Genders" Role="Genders" Multiplicity="1" />
@@ -526,6 +568,18 @@
             </Principal>
             <Dependent Role="Tickets">
               <PropertyRef Name="id_type_tickets" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_photo_users">
+          <End Type="Model.users" Role="users" Multiplicity="1" />
+          <End Type="Model.userphoto" Role="userphoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="userphoto">
+              <PropertyRef Name="id_user" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -639,6 +693,16 @@
                 <ScalarProperty Name="cost_premium" ColumnName="cost_premium" />
                 <ScalarProperty Name="type_ticket" ColumnName="type_ticket" />
                 <ScalarProperty Name="id_type_ticket" ColumnName="id_type_ticket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userphoto">
+            <EntityTypeMapping TypeName="Model.userphoto">
+              <MappingFragment StoreEntitySet="userphoto">
+                <ScalarProperty Name="photo_path" ColumnName="photo_path" />
+                <ScalarProperty Name="photo_binary" ColumnName="photo_binary" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_photo" ColumnName="id_photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

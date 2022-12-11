@@ -14,6 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using workWithBD.Windows;
 
+
+/// <summary>
+///  admin admin для администратора
+///  ВасяПуп11 DfczGeg11! - логин и пароль соответственно для пользователя
+/// </summary>
 namespace workWithBD
 {
 

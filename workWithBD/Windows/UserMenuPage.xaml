@@ -9,7 +9,47 @@
       Title="UserMenuPage">
 
     <Grid>
-        <!--<Image Margin="40,30,650,310" Source="Photo\index.jpg" Height="100" Width="100"></Image>-->
-        <TextBlock Style="{StaticResource TBStyle}"  HorizontalAlignment="Center" Margin="0,30,300,0" Name="UserName">UserName</TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <Image Height="300" Width="300" Name="imUser" VerticalAlignment="Top" Source="C:\Users\Белый Хозяин\source\repos\workWithBD\workWithBD\Resources\nophoto.jpg"/>
+                <Button Click="Button_Click_1">Изменить фото на новое</Button>
+                <Button Click="Button_Click_2">Добавить несколько фото</Button>
+                <Button Click="Button_Click_3">Изменить фото на старое</Button>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                    <TextBlock Margin="0,0,15,0">Фамилия пользователя:</TextBlock>
+                    <TextBlock Name="tbSurname"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                    <TextBlock Margin="0,0,15,0">Имя пользователя:</TextBlock>
+                    <TextBlock Name="tbName"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                    <TextBlock Margin="0,0,15,0">Отчество пользователя:</TextBlock>
+                    <TextBlock Name="tbLastname"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                    <TextBlock Margin="0,0,15,0">День рождения: </TextBlock>
+                    <TextBlock Name="tbBirthday"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                    <TextBlock Margin="0,0,15,0">Пол:</TextBlock>
+                    <TextBlock Name="tbGender"></TextBlock>
+                </StackPanel>
+                <Button Click="Button_Click">Изменить личные данные</Button>
+                <Button Click="Button_Click_Log">Изменить логин и пароль</Button>
+                <StackPanel Name="spGallery" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                     <Button Name="Back" Click="Back_Click" IsEnabled="False">Назад</Button>
+                        <Image Width="200" Height="200" Name="imgGallery"></Image>
+                        <Button Name="Next" Click="Next_Click">Вперед</Button>
+                    </StackPanel>
+                    <Button Name="btnOld" Click="btnOld_Click">Изменить фото на выбранное</Button>
+                    <Button Name="btnClose" Click="btnClose_Click">Закрыть</Button>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
     </Grid>
 </Page>

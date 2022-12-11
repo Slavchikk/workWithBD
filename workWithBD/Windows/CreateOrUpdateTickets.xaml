@@ -12,7 +12,8 @@
 
     <Grid>
         <StackPanel Margin="10">
-            <Label HorizontalAlignment="Center"   Style="{StaticResource LabelStyle}" >Добавление билета</Label>
+            <Label HorizontalAlignment="Center"   Style="{StaticResource LabelStyle}" >Добавление / 
+                изменение билета</Label>
 
             <GroupBox HorizontalAlignment="Center" Header="Введите фильм">
                 <TextBox Width="130" Name="TBnameFilm"/>

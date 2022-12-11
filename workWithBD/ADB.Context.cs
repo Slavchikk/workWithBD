@@ -36,6 +36,7 @@ namespace workWithBD
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<type_halls> type_halls { get; set; }
         public virtual DbSet<type_tickets> type_tickets { get; set; }
+        public virtual DbSet<userphoto> userphoto { get; set; }
         public virtual DbSet<users> users { get; set; }
     }
 }

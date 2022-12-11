@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,13 +21,18 @@ namespace workWithBD.Windows
     /// </summary>
     public partial class ListViewTable : Page
     {
-        string Login;
-        public ListViewTable(string Login = "noKnown")
+        users user;
+        List<Tickets> tickets;
+        public ListViewTable(users user)
         {
-            this.Login = Login;
+            this.user = user;
             InitializeComponent();
+            
             listTable.ItemsSource = Base.EM.Tickets.ToList();
-          //  listTable.ItemsSource = Base.EM.Tickets.ToList();
+            TBTypeTicket.ItemsSource = Base.EM.type_tickets.ToList();
+            TBTypeTicket.SelectedValuePath = "id_type_ticket";
+            TBTypeTicket.DisplayMemberPath = "type_ticket";
+            //  listTable.ItemsSource = Base.EM.Tickets.ToList();
         }
 
         private void tbCharacter_Loaded(object sender, RoutedEventArgs e)
@@ -181,7 +187,7 @@ namespace workWithBD.Windows
         private void Btn_back_menu(object sender, RoutedEventArgs e)
         {
             
-            NavigationService.Navigate(new AdminMenuPage(Login));
+            NavigationService.Navigate(new AdminMenuPage(user));
         }
 
         private void btnCreateTickets_Click(object sender, RoutedEventArgs e)
@@ -198,7 +204,7 @@ namespace workWithBD.Windows
             Tickets TicketsDelete = Base.EM.Tickets.FirstOrDefault(y => y.id_ticket == ind); // находим кота с соответствующим индексом
             Base.EM.Tickets.Remove(TicketsDelete);  // удаляем кота
             Base.EM.SaveChanges();
-            NavigationService.Navigate(new ListViewTable());  // перезагружаем страницу, переходя на нее же саму
+            NavigationService.Navigate(new ListViewTable(user));  // перезагружаем страницу, переходя на нее же саму
             MessageBox.Show("Запись удалена");
         }
 
@@ -210,10 +216,105 @@ namespace workWithBD.Windows
             // находим кота с соответствующим индексом
 
             sales salesupd = Base.EM.sales.FirstOrDefault(x => x.id_tickets == TicketsUpd.id_ticket);
-            NavigationService.Navigate(new CreateOrUpdateTickets(TicketsUpd,salesupd));  // переходим на страницу с формой добавления, которую будем использовать и для редактирования
+            NavigationService.Navigate(new CreateOrUpdateTickets(TicketsUpd,salesupd,user));  // переходим на страницу с формой добавления, которую будем использовать и для редактирования
             // Обратите внимание, что конструктор в этом случае не пустой. Он содержит того кота, который соотвествует нужному индексу
         }
 
-       
+        private void SortOrFilt()
+        {
+
+            listTable.ItemsSource = Base.EM.Tickets.ToList();
+            tickets = Base.EM.Tickets.ToList();
+         
+            
+            if (!string.IsNullOrWhiteSpace(TbFind.Text))
+            {
+                listTable.ItemsSource = tickets.Where(x => x.session.ToLower().Contains(TbFind.Text.ToLower())).ToList();
+            }
+            if (TBTypeTicket.SelectedIndex != -1)
+            {
+                switch(TBTypeTicket.SelectedIndex)
+                {
+                    case 0:
+                      listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        break;
+                    case 1:
+                        listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        break;
+                    case 2:
+                        listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        break;
+                    case 3:
+                        listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        break;
+                    case 4:
+                        listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        break;
+
+                }
+              
+
+
+            }
+
+            
+            if ((CBSort.SelectedIndex != -1) && (CBCrit.SelectedIndex != -1))
+            {
+                switch (CBCrit.SelectedIndex)
+                {
+                    case 0:
+                        if (CBSort.SelectedIndex == 0)
+                        {
+                            listTable.ItemsSource = tickets.OrderBy(x => x.session).ToList();
+                        }
+                        else
+                        {
+                            listTable.ItemsSource = tickets.OrderByDescending(x => x.session).ToList();
+                        }
+                        break;
+                    case 1:
+                        if (CBSort.SelectedIndex == 0)
+                        {
+                            listTable.ItemsSource = tickets.OrderBy(x => x.price).ToList();
+                        }
+                        else
+                        {
+                            listTable.ItemsSource = tickets.OrderByDescending(x => x.price).ToList();
+                        }
+                        break;
+                    case 2:
+                        if (CBSort.SelectedIndex == 0)
+                        {
+                            listTable.ItemsSource = tickets.OrderBy(x => x.DateTime).ToList();
+                        }
+                        else
+                        {
+                            listTable.ItemsSource = tickets.OrderByDescending(x => x.DateTime).ToList();
+                        }
+                        break;
+                }
+            }
+        }
+
+        private void cbCrit_Chang(object sender, SelectionChangedEventArgs e)
+        {
+            SortOrFilt();
+        }
+
+        private void cbSort_Chang(object sender, SelectionChangedEventArgs e)
+        {
+            SortOrFilt();
+
+        }
+
+        private void tx_chang(object sender, TextChangedEventArgs e)
+        {
+            SortOrFilt();
+        }
+
+        private void cbFiltr_Chang(object sender, SelectionChangedEventArgs e)
+        {
+            SortOrFilt();
+        }
     }
 }
