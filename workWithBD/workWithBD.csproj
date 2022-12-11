@@ -114,6 +114,7 @@
     <Compile Include="Kinoteatr.cs">
       <DependentUpon>ADB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pagination.cs" />
     <Compile Include="PropertyClass.cs" />
     <Compile Include="Role_user.cs">
       <DependentUpon>ADB.tt</DependentUpon>

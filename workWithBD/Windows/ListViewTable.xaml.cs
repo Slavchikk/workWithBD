@@ -23,16 +23,19 @@ namespace workWithBD.Windows
     {
         users user;
         List<Tickets> tickets;
+        Pagination pagination = new Pagination();
         public ListViewTable(users user)
         {
             this.user = user;
             InitializeComponent();
-            
+            tickets = Base.EM.Tickets.ToList();
             listTable.ItemsSource = Base.EM.Tickets.ToList();
             TBTypeTicket.ItemsSource = Base.EM.type_tickets.ToList();
             TBTypeTicket.SelectedValuePath = "id_type_ticket";
             TBTypeTicket.DisplayMemberPath = "type_ticket";
             //  listTable.ItemsSource = Base.EM.Tickets.ToList();
+            pagination.CountPage = tickets.Count;
+            DataContext = pagination;
         }
 
         private void tbCharacter_Loaded(object sender, RoutedEventArgs e)
@@ -294,6 +297,21 @@ namespace workWithBD.Windows
                         break;
                 }
             }
+            if(tickets.Count>0)
+            {
+                pagination.CurrentPage = 1;
+
+                try
+                {
+                    pagination.CountPage = Convert.ToInt32(txtPageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+                }
+                catch
+                {
+                    pagination.CountPage = tickets.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+                }
+                pagination.Countlist = tickets.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+                listTable.ItemsSource = tickets.Skip(0).Take(pagination.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно
+            }
         }
 
         private void cbCrit_Chang(object sender, SelectionChangedEventArgs e)
@@ -313,6 +331,30 @@ namespace workWithBD.Windows
         }
 
         private void cbFiltr_Chang(object sender, SelectionChangedEventArgs e)
+        {
+            SortOrFilt();
+        }
+
+        private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+
+            switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+            {
+                case "prev":
+                    pagination.CurrentPage--;
+                    break;
+                case "next":
+                    pagination.CurrentPage++;
+                    break;
+                default:
+                    pagination.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            listTable.ItemsSource = tickets.Skip(pagination.CurrentPage * pagination.CountPage - pagination.CountPage).Take(pagination.CountPage).ToList();  // оображение 
+        }
+
+        private void txtPageCount_TextChanged(object sender, TextChangedEventArgs e)
         {
             SortOrFilt();
         }
