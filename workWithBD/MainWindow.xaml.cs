@@ -49,5 +49,10 @@ namespace workWithBD
             // FrameClass.FrameMain.Navigate(new AdminPage());
             MainFrame.Navigate(new AutorizationPage());
         }
+
+        private void Btn_Go_Rechlama(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Rechlama());
+        }
     }
 }

@@ -17,6 +17,7 @@
         <TextBlock Style="{StaticResource TBStyle}" Name ="Headers"  Margin="100,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"> КиноFallout</TextBlock>
         <Button Width="100" Template="{StaticResource CTButon}" Grid.Column="1"  Margin="0,0,10,0" HorizontalAlignment="Right" Click="Btn_Go_reg">Регистрация</Button>
         <Button Width="100"  Template="{StaticResource CTButon}" Grid.Column="1" Margin="0,0,130,0" HorizontalAlignment="Right" Click="Btn_Go_Admin">Авторизация</Button>
+        <Button Width="100"  Template="{StaticResource CTButon}" Grid.Column="1" Margin="0,0,250,0" HorizontalAlignment="Right" Click="Btn_Go_Rechlama">Реклама</Button>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
            <Frame Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
         </StackPanel>

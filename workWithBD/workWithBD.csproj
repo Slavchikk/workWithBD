@@ -167,6 +167,9 @@
     <Compile Include="Windows\ListViewTable.xaml.cs">
       <DependentUpon>ListViewTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Rechlama.xaml.cs">
+      <DependentUpon>Rechlama.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\RegistrPage.xaml.cs">
       <DependentUpon>RegistrPage.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ListViewTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Rechlama.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
