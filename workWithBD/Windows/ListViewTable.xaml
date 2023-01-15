@@ -21,7 +21,7 @@
                 <TextBlock Margin="10,0,15,10">Критерий:</TextBlock>
                 <ComboBox Name="CBCrit" Width="80"  Height="30" SelectionChanged="cbCrit_Chang" HorizontalAlignment="Left" IsEnabled="True">
                     <ComboBoxItem Content="По билету"/>
-                    <ComboBoxItem Content="По цене"/>
+                    <ComboBoxItem Content="По дням"/>
                     <ComboBoxItem Content="По дате начала"/>
                 </ComboBox>
             </StackPanel>
@@ -41,7 +41,14 @@
             </StackPanel>
             
             <GroupBox   HorizontalAlignment="Center" Margin="5,0,10,10" Height="50" Header="Введите тип билета">
-                <ComboBox SelectionChanged="cbFiltr_Chang" Width="130" Name="TBTypeTicket"/>
+                <ComboBox SelectionChanged="cbFiltr_Chang" Width="130" Name="TBTypeTicket">
+                    <ComboBoxItem Content="Все билеты"/>
+                    <ComboBoxItem Content="Детский"/>
+                    <ComboBoxItem Content="Взрослый"/>
+                    <ComboBoxItem Content="Студенческий"/>
+                    <ComboBoxItem Content="Школьный"/>
+                    <ComboBoxItem Content="Пенсионерский"/>
+                </ComboBox>
             </GroupBox>
             <StackPanel  Margin="15,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
                 <GroupBox Header="Кол-во записей">

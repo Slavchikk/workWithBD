@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace workWithBD.Windows
 {
@@ -29,10 +31,10 @@ namespace workWithBD.Windows
             this.user = user;
             InitializeComponent();
             tickets = Base.EM.Tickets.ToList();
-            listTable.ItemsSource = Base.EM.Tickets.ToList();
-            TBTypeTicket.ItemsSource = Base.EM.type_tickets.ToList();
-            TBTypeTicket.SelectedValuePath = "id_type_ticket";
-            TBTypeTicket.DisplayMemberPath = "type_ticket";
+            listTable.ItemsSource = tickets;
+            //TBTypeTicket.ItemsSource = Base.EM.type_tickets.ToList();
+            //TBTypeTicket.SelectedValuePath = "id_type_ticket";
+            //TBTypeTicket.DisplayMemberPath = "type_ticket";
             //  listTable.ItemsSource = Base.EM.Tickets.ToList();
             pagination.CountPage = tickets.Count;
             DataContext = pagination;
@@ -226,78 +228,118 @@ namespace workWithBD.Windows
         private void SortOrFilt()
         {
 
-            listTable.ItemsSource = Base.EM.Tickets.ToList();
+            //listTable.ItemsSource = Base.EM.Tickets.ToList();
             tickets = Base.EM.Tickets.ToList();
-         
-            
-            if (!string.IsNullOrWhiteSpace(TbFind.Text))
-            {
-                listTable.ItemsSource = tickets.Where(x => x.session.ToLower().Contains(TbFind.Text.ToLower())).ToList();
-            }
+
+
+
             if (TBTypeTicket.SelectedIndex != -1)
             {
-                switch(TBTypeTicket.SelectedIndex)
+                switch (TBTypeTicket.SelectedIndex)
                 {
                     case 0:
-                      listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        tickets = Base.EM.Tickets.ToList();
                         break;
                     case 1:
-                        listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        tickets = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex).ToList();
                         break;
                     case 2:
-                        listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        tickets = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex).ToList();
                         break;
                     case 3:
-                        listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        tickets = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex).ToList();
                         break;
                     case 4:
-                        listTable.ItemsSource = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex + 1).ToList();
+                        tickets = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex).ToList();
+                        break;
+                    case 5:
+                        tickets = tickets.Where(x => x.id_type_tickets == TBTypeTicket.SelectedIndex).ToList();
                         break;
 
                 }
-              
-
-
             }
+                if (!string.IsNullOrWhiteSpace(TbFind.Text))
+                {
+                    tickets = tickets.Where(x => x.session.ToLower().Contains(TbFind.Text.ToLower())).ToList();
+                }
+                if ((CBSort.SelectedIndex != -1) && (CBCrit.SelectedIndex != -1))
+                {
+                    switch (CBCrit.SelectedIndex)
+                    {
+                        case 0:
+                            if (CBSort.SelectedIndex == 0)
+                            {
+                                tickets = tickets.OrderBy(x => x.session).ToList();
+                            }
+                            else
+                            {
+                                tickets = tickets.OrderByDescending(x => x.session).ToList();
+                            }
+                            break;
+                        case 1:
+                            if (CBSort.SelectedIndex == 0)
+                            {
+                                tickets = tickets.OrderBy(x => x.id_session_day).ToList();
+                          //  Items.OrderByDescending(t => t.PointXYZ.DistanceTo(SomeOtherPoint))
+                            }
+                            else
+                            {
+                                tickets = tickets.OrderByDescending(x => x.id_session_day).ToList();
+                            }
+                            break;
+                        case 2:
+                            if (CBSort.SelectedIndex == 0)
+                            {
+                                tickets = tickets.OrderBy(x => x.DateTime).ToList();
+                            }
+                            else
+                            {
+                                tickets = tickets.OrderByDescending(x => x.DateTime).ToList();
+                            }
+                            break;
+                    }
+                }
 
             
-            if ((CBSort.SelectedIndex != -1) && (CBCrit.SelectedIndex != -1))
-            {
-                switch (CBCrit.SelectedIndex)
-                {
-                    case 0:
-                        if (CBSort.SelectedIndex == 0)
-                        {
-                            listTable.ItemsSource = tickets.OrderBy(x => x.session).ToList();
-                        }
-                        else
-                        {
-                            listTable.ItemsSource = tickets.OrderByDescending(x => x.session).ToList();
-                        }
-                        break;
-                    case 1:
-                        if (CBSort.SelectedIndex == 0)
-                        {
-                            listTable.ItemsSource = tickets.OrderBy(x => x.price).ToList();
-                        }
-                        else
-                        {
-                            listTable.ItemsSource = tickets.OrderByDescending(x => x.price).ToList();
-                        }
-                        break;
-                    case 2:
-                        if (CBSort.SelectedIndex == 0)
-                        {
-                            listTable.ItemsSource = tickets.OrderBy(x => x.DateTime).ToList();
-                        }
-                        else
-                        {
-                            listTable.ItemsSource = tickets.OrderByDescending(x => x.DateTime).ToList();
-                        }
-                        break;
-                }
-            }
-            if(tickets.Count>0)
+
+
+            //if ((CBSort.SelectedIndex != -1) && (CBCrit.SelectedIndex != -1))
+            //{
+            //    switch (CBCrit.SelectedIndex)
+            //    {
+            //        case 0:
+            //            if (CBSort.SelectedIndex == 0)
+            //            {
+            //                listTable.ItemsSource = tickets.OrderBy(x => x.session).ToList();
+            //            }
+            //            else
+            //            {
+            //                listTable.ItemsSource = tickets.OrderByDescending(x => x.session).ToList();
+            //            }
+            //            break;
+            //        case 1:
+            //            if (CBSort.SelectedIndex == 0)
+            //            {
+            //                listTable.ItemsSource = tickets.OrderBy(x => x.price).ToList();
+            //            }
+            //            else
+            //            {
+            //                listTable.ItemsSource = tickets.OrderByDescending(x => x.price).ToList();
+            //            }
+            //            break;
+            //        case 2:
+            //            if (CBSort.SelectedIndex == 0)
+            //            {
+            //                listTable.ItemsSource = tickets.OrderBy(x => x.DateTime).ToList();
+            //            }
+            //            else
+            //            {
+            //                listTable.ItemsSource = tickets.OrderByDescending(x => x.DateTime).ToList();
+            //            }
+            //            break;
+            //    }
+            //}
+            if (tickets.Count > 0)
             {
                 pagination.CurrentPage = 1;
 
